@@ -1,0 +1,27 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %} Profil Düzenle- Online Alış Veriş Mağazası{% endblock %}
+{% block sidebar %} {{ include ('home/_usersidebar.html.twig') }} {% endblock %}
+{% block content %}
+<div class="span8">
+    <ul class="breadcrumb">
+        <li><a href="{{ path('home') }}">Anasayfa</a> <span class="divider">/</span></li>
+        <li><a href="products.html">Profil Düzenleme</a> <span class="divider">/</span></li>
+        <li class="active">Önizleme</li>
+    </ul>
+    <div class="well well-small">
+        <div class="row-fluid">
+            <div class="span8">
+    <h4>Profil Düzenleme</h4>
+
+    {{ include('userpanel/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Kategori Listesi{% endblock %}
+
+{% block content %}
+    <!--Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!--Content Header (Page Header) -->
+        <section class="content-header">
+            <h1>
+                Kategori Listesi
+            </h1>
+        </section>
+        <!--Main Content-->
+        <section class="content">
+            <!--User List Table-->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><a href="{{ path('admin_category_new') }}" class="btn btn-warning btn-fw">Kategori
+                            Ekleme<i class="mdi mdi-plus"></i></a></h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Parentid</th>
+                                <th>Title</th>
+                                <th>Keywords</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Göster</th>
+                                <th>Düzenle</th>
+                                <th>Sil</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for category in categories %}
+                                <tr>
+                                    <td>{{ category.id }}</td>
+                                    <td>{{ category.parentid }}</td>
+                                    <td>{{ category.title }}</td>
+                                    <td>{{ category.keywords }}</td>
+                                    <td>{{ category.description }}</td>
+                                    <td>{{ category.status }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_category_show', {'id': category.id}) }}"
+                                           class="btn btn-primary btn-sm">Göster</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('admin_category_edit', {'id': category.id}) }}"
+                                           class="btn btn-info btn-sm">Düzenle</a>
+                                    </td>
+                                    <td>{{ include('admin/category/_delete_form.html.twig') }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--User List Table-->
+        </section>
+        <!--/.content-->
+    </div>
+    <!--/.content-wrapper-->
+{% endblock %}

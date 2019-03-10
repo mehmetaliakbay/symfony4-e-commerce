@@ -1,0 +1,63 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Kategori Detay{% endblock %}
+
+{% block content %}
+    <!--Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!--Content Header (Page Header) -->
+    <section class="content-header">
+        <h1>
+            Kategori Detay
+        </h1>
+    </section>
+    <!--Main Content-->
+    <section class="content">
+        <!--User List Table-->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><a href="{{ path('admin_category_new') }}" class="btn btn-warning btn-fw">Kategori
+                        Ekleme<i class="mdi mdi-plus"></i></a></h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ category.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Parentid</th>
+                            <td>{{ category.parentid }}</td>
+                        </tr>
+                        <tr>
+                            <th>Title</th>
+                            <td>{{ category.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Keywords</th>
+                            <td>{{ category.keywords }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ category.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>{{ category.status }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('admin_category_index') }}">back to list</a>
+
+                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>
+
+                    {{ include('admin/category/_delete_form.html.twig') }}
+
+                </div>
+                <!--User List Table-->
+    </section>
+    <!--/.content-->
+</div>
+<!--/.content-wrapper-->
+{% endblock %}

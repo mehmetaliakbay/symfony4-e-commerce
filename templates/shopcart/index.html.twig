@@ -1,0 +1,65 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} Sepet - Online Alış Veriş Mağazası{% endblock %}
+
+
+{% block sidebar %} {{  include ('home/_usersidebar.html.twig') }} {% endblock %}
+{% block content %}
+<div class="span8">
+    <ul class="breadcrumb">
+        <li><a href="{{ path('home') }}">Home</a> <span class="divider">/</span></li>
+        <li><a href="products.html">Items</a> <span class="divider">/</span></li>
+        <li class="active">Preview</li>
+    </ul>
+    <div class="well well-small">
+        <div class="row-fluid">
+            <div class="span8">
+
+    <h5>Sepetteki Ürünler</h5>
+                {{  include ('messages.html.twig') }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ürün İsmi</th>
+                <th>Satış Fiyatı</th>
+                <th>Miktar</th>
+                <th>Toplam</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set total = 0 %}
+        {% for shopcart in shopcarts %}
+            <tr>
+                <td>{{ shopcart.id }}</td>
+                <td>{{ shopcart.title }}</td>
+                <td>{{ shopcart.sprice }}</td>
+                <td>{{ shopcart.quantity }}</td>
+                <td>{{ shopcart.quantity * shopcart.sprice}}</td>
+                <td>
+                <a href="{{ path('shopcart_del',{'id':shopcart.id}) }}" onclick="return confirm('Silinecek Emin misiniz?');" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+            {% set total = total + (shopcart.quantity * shopcart.sprice) %}
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="5"><b>Toplam Alışveriş Tutarı : {{ total }} TL</b></td>
+        </tr>
+        </tbody>
+    </table>
+                <a href="{{ path('orders_new') }}" class="btn btn-block btn-success btn-large">Ürünleri Satın Al</a>
+
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+
+
+
+{% endblock %}

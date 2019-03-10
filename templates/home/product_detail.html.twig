@@ -1,0 +1,95 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} {{ data[0].title }} - Online Alış Veriş Mağazası{% endblock %}
+{% block keywords %}{{ data[0].keywords }}{% endblock %}
+{% block description %} {{ data[0].description }}{% endblock %}
+
+{% block sidebar %} {{  include ('home/_sidebar.html.twig') }} {% endblock %}
+{% block content %}
+
+    <div class="span9">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+            <li><a href="products.html">Items</a> <span class="divider">/</span></li>
+            <li class="active">Preview</li>
+        </ul>
+        <div class="well well-small">
+            <div class="row-fluid">
+                <div class="span5">
+                    <div id="myCarousel" class="carousel slide cntr">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <a href="#"> <img src="{{ asset('uploads')}}/images/{{ data[0].image }}" alt="" style="width:100%"></a>
+                            </div>
+
+                            {%  for rs in images %}
+                                <div class="item">
+                                    <a href="#"><img src="{{ asset('uploads') }}/images/{{ rs.image }}" alt="" style="width:100%" ></a>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                    </div>
+                </div>
+                <div class="span7">
+                    <h3>{{ data[0].title }}</h3>
+                    <hr class="soft"/>
+
+
+                    <form class="form-horizontal qtyFrm" action="{{ path('shopcart_new') }}" method="post">
+                        <div class="control-group">
+                            <label class="control-label"><span>{{ data[0].sprice }}₺ </span></label>
+                            <div class="controls">
+                              Alacağınız Adet:
+                                <input type="number" name="shopcart[quantity]" value="1" class="span6" placeholder="Qty." max="{{ data[0].amount }}">
+                              <input type="hidden" name="shopcart[productid]" value="{{data[0].id}}" >
+                            </div>
+                        </div>
+
+                        <h4>Stokda {{ data[0].amount }} ürün var</h4>
+                        <p>{{ data[0].description }}
+                        <p>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Sepete Ekle</button>
+                    </form>
+
+
+                </div>
+            </div>
+            <hr class="softn clr"/>
+
+
+            <ul id="productDetail" class="nav nav-tabs">
+                <li class="active"><a href="#home" data-toggle="tab">Ürün Detay</a></li>
+
+            </ul>
+            <div id="myTabContent" class="tab-content tabWrapper">
+                <div class="tab-pane fade active in" id="home">
+                    <h4>Ürün bilgileri</h4>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Rengi:</td><td class="techSpecTD2">Siyah</td></tr>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Style:</td><td class="techSpecTD2">Apparel,Sports</td></tr>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Season:</td><td class="techSpecTD2">spring/summer</td></tr>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Usage:</td><td class="techSpecTD2">fitness</td></tr>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Sport:</td><td class="techSpecTD2">122855031</td></tr>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Brand:</td><td class="techSpecTD2">Shock Absorber</td></tr>
+                        </tbody>
+                    </table>
+                    {{ data[0].detail | raw }}
+                    {{ data[0].detail | raw }}
+                    {{ data[0].detail | raw }}
+                    {{ data[0].detail | raw }}
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    </div> </div>
+    </div>
+{% endblock %}

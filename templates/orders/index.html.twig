@@ -1,0 +1,63 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} Sepet - Online Alış Veriş Mağazası{% endblock %}
+
+
+{% block sidebar %} {{ include ('home/_usersidebar.html.twig') }} {% endblock %}
+{% block content %}
+    <div class="span8">
+        <ul class="breadcrumb">
+            <li><a href="{{ path('home') }}">Home</a> <span class="divider">/</span></li>
+            <li><a href="products.html">Order Items</a> <span class="divider">/</span></li>
+            <li class="active">Preview</li>
+        </ul>
+        <div class="well well-small">
+            <div class="row-fluid">
+                <div class="span8">
+
+                    <h4>Siparişlerim</h4>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for order in orders %}
+                            <tr>
+
+                                <td>{{ order.name }}</td>
+                                <td>{{ order.amount }}</td>
+                                <td>{{ order.city }}</td>
+                                <td>{{ order.phone }}</td>
+                                <td>{{ order.createdat }}</td>
+                                <td>{{ order.status }}</td>
+                                <td>
+                                    <a href="{{ path('orders_show', {'id': order.id}) }}">show</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="11">Kayıt bulunamadı</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+{% endblock %}

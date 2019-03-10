@@ -1,0 +1,66 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Kategori Listesi{% endblock %}
+
+{% block content %}
+    <!--Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!--Content Header (Page Header) -->
+        <section class="content-header">
+            <h1>
+                Mesaj Listesi
+            </h1>
+        </section>
+        <!--Main Content-->
+        <section class="content">
+            <!--User List Table-->
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Comment</th>
+                                <th>Status</th>
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for message in messages %}
+                                <tr>
+                                    <td>{{ message.id }}</td>
+                                    <td>{{ message.name }}</td>
+                                    <td>{{ message.email }}</td>
+                                    <td>{{ message.subject }}</td>
+                                    <td>{{ message.message }}</td>
+                                    <td>{{ message.comment }}</td>
+                                    <td>{{ message.status }}</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" href="javascript:openWin('{{ path('admin_messages_show', {'id': message.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=100,left=200,scrollBars=no,resizable=no,width=600,height=600');">
+                                     Göster</a>
+
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="8">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <!--User List Table-->
+        </section>
+        <!--/.content-->
+    </div>
+    <!--/.content-wrapper-->
+{% endblock %}
+

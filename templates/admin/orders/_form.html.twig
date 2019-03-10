@@ -1,0 +1,50 @@
+{{ include ('messages.html.twig') }}
+
+
+        <div class="col-sm-8">
+
+            <form name="order" action="{{ path('orders_new') }}" method="post">
+
+                <label for="inputEmail">Ödenecek Tutar</label>
+                <input type="text" name="orders[amount]" value="{{ total }}" class="form-control" disabled><br>
+
+                <h2 class="title text-center"><strong>Kargo Alıcı Bilgileri</strong></h2>
+
+                <label for="inputPassword">Ad Soyad</label>
+                <input type="text" name="orders[name]" value="{{ app.user.name }}" class="form-control" placeholder="name" required autofocus>
+
+                <label for="inputPassword">Adres</label>
+                <input type="text" name="orders[address]" value="{{ app.user.address }}" class="form-control" placeholder="address" required>
+
+                <label for="inputPassword">Şehir</label>
+                <input type="text" name="orders[city]" value="{{ app.user.city }}" class="form-control" placeholder="name" required>
+
+                <label for="inputPassword">Telefon</label>
+                <input type="text" name="orders[phone]" value="{{ app.user.phone }}" class="form-control" placeholder="name" required>
+
+                <br>
+
+                <h2 class="title text-center"><strong>Kredi Kartı Bilgileri</strong></h2>
+
+                <label for="inputPassword">Ad Soyad</label>
+                <input type="text" name="cardholdername" class="form-control" placeholder="Kartın Üzerindeki İsim" required>
+
+                <label for="inputPassword">Kart Numarası</label>
+                <input type="text" name="cardnumber" class="form-control" placeholder="Kart Numarası" required>
+
+                <label for="inputPassword">Son Kullanma Tarihi</label>
+                <input type="text" name="cardsecuritycode" class="form-control" placeholder="AY/YIL*" required>
+
+                <label for="inputPassword">Güvenlik Kodu</label>
+                <input type="number" name="cardnumber" class="form-control" placeholder="CVC2" required>
+
+                <input type="hidden" name="token" value="{{ csrf_token('form-order') }}">
+    <br>
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Satın Al
+                </button>
+            </form>
+            <br>
+        </div>
+    </div>
+</div><!--/#contact-page-->

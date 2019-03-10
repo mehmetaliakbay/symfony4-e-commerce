@@ -1,0 +1,74 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} {{ data[0].title }}{% endblock %}
+{% block keywords %}{{ data[0].keywords }}{% endblock %}
+{% block description %} {{ data[0].description }}{% endblock %}
+
+{% block sidebar %} {{  include ('home/_sidebar.html.twig') }} {% endblock %}
+{% block content %}
+    <div class="span9">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+            <li class="active">Products Name</li>
+        </ul>
+        <h3>{{ data[0].title }}</h3>
+        <hr class="soft"/>
+
+
+        <form class="form-horizontal span6">
+            <div class="control-group">
+                <label class="control-label alignL">Sort By </label>
+                <select>
+                    <option>Priduct name A - Z</option>
+                    <option>Priduct name Z - A</option>
+                    <option>Priduct Stoke</option>
+                    <option>Price Lowest first</option>
+                </select>
+            </div>
+        </form>
+
+        <br class="clr"/>
+        <div class="tab-content">
+
+
+            <div class="tab-pane  active" id="blockView">
+                <ul class="thumbnails">
+
+                    {% for rs in products %}
+                    <li class="span4">
+                        <div class="thumbnail">
+                            <a href="{{ path('product_detail',{'id':rs.id}) }}"><img src="{{ asset('uploads') }}/images/{{ rs.image }}" alt=""/></a>
+                            <div class="caption">
+                                <h5>{{ rs.title }}</h5>
+                                <p>
+                                   {{ rs.description }}
+                                </p>
+                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Sepete at <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">{{ rs.sprice }}</a></h4>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+
+                </ul>
+                <hr class="soft"/>
+            </div>
+        </div>
+
+      {##}
+        {#<div class="pagination">#}
+            {#<ul>#}
+                {#<li><a href="#">&lsaquo;</a></li>#}
+                {#<li><a href="#">1</a></li>#}
+                {#<li><a href="#">2</a></li>#}
+                {#<li><a href="#">3</a></li>#}
+                {#<li><a href="#">4</a></li>#}
+                {#<li><a href="#">...</a></li>#}
+                {#<li><a href="#">&rsaquo;</a></li>#}
+            {#</ul>#}
+        {#</div>#}
+        <br class="clr"/>
+    </div>
+    </div>
+    <!-- MainBody End ============================= -->
+{% endblock %}

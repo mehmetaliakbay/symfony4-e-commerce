@@ -1,0 +1,57 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Üye Listesi{% endblock %}
+
+{% block content %}
+    <!--Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!--Content Header (Page Header) -->
+        <section class="content-header">
+            <h1>
+                Üye Listesi
+            </h1>
+        </section>
+        <!--Main Content-->
+        <section class="content">
+            <!--User List Table-->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><a href="{{ path('admin_user_new') }}" class="btn btn-warning btn-fw">Üye Ekleme<i class="mdi mdi-plus"></i></a></h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Adı Soyadı</th>
+                                <th>E-mail</th>
+                                <th>Durum</th>
+                                <th>Türü</th>
+                                <th>Düzenle</th>
+                                <th>Sil</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in user %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.status }}</td>
+                                <td>{% for item in user.roles %}
+                                        {{ item }}
+                                    {% endfor %}</td>
+                                <td><a href="{{ path('admin_user_edit',{'id':user.id}) }}" class="btn btn-primary btn-sm">Düzenle</a></td>
+                                <td><a href="{{ path('admin_user_delete',{'id':user.id}) }}" onclick="return confirm('Silinecek Emin misiniz?');" class="btn btn-danger btn-sm">Sil</a></td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--User List Table-->
+        </section>
+        <!--/.content-->
+    </div>
+    <!--/.content-wrapper-->
+{% endblock %}

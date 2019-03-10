@@ -1,0 +1,30 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Ürün Düzenleme{% endblock %}
+
+{% block content %}
+    <!--Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!--Content Header (Page Header) -->
+        <section class="content-header">
+            <h1>
+                Edit Settings
+            </h1>
+        </section>
+        <!--Main Content-->
+        <section class="content">
+            <!--User List Table-->
+            <div class="card">
+                {{ include('admin/messages.html.twig') }}
+                <div class="card-body">
+                    <div class="table-responsive">
+                        {{ include('admin/setting/_form.html.twig', {'button_label': 'Update'}) }}
+
+                    </div>
+                    <!--User List Table-->
+        </section>
+        <!--/.content-->
+    </div>
+    <!--/.content-wrapper-->
+{% endblock %}
+

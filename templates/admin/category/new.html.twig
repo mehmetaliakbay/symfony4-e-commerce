@@ -1,0 +1,31 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Kategori Ekleme{% endblock %}
+
+{% block content %}
+<!--Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!--Content Header (Page Header) -->
+    <section class="content-header">
+        <h1>
+            Kategori Ekleme
+        </h1>
+    </section>
+    <!--Main Content-->
+    <section class="content">
+        <!--User List Table-->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+
+    {{ include('admin/category/_form.html.twig') }}
+
+    <a href="{{ path('admin_category_index') }}">back to list</a>
+                </div>
+                <!--User List Table-->
+    </section>
+    <!--/.content-->
+</div>
+    <!--/.content-wrapper-->
+{% endblock %}
+

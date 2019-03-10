@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Order Detail{% endblock %}</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{ asset('admin') }}/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png"/>
+    <SCRIPT language="JavaScript" type="text/javascript">
+        function openWin(windowURL, windowName, windowFeatures) {
+            window.open(windowURL, windowName, windowFeatures);
+        }
+    </SCRIPT>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+</head>
+
+<body class="hold-transition skin-blue">
+    <!--Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!--Content Header (Page Header) -->
+        <section class="content-header">
+            <h1>
+                Sipariş Detayı
+            </h1>
+            {{ include('messages.html.twig')}}
+        </section>
+        <!--Main Content-->
+        <section class="content">
+            <!--User List Table-->
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ order.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Userid</th>
+                                <td>{{ order.userid }}</td>
+                            </tr>
+                            <tr>
+                                <th>Miktar</th>
+                                <td>{{ order.amount }}</td>
+                            </tr>
+                            <tr>
+                                <th>İsim</th>
+                                <td>{{ order.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Adres</th>
+                                <td>{{ order.adress }}</td>
+                            </tr>
+                            <tr>
+                                <th>Şehir</th>
+                                <td>{{ order.city }}</td>
+                            </tr>
+                            <tr>
+                                <th>Telefon</th>
+                                <td>{{ order.phone }}</td>
+                            </tr>
+                           <form action="{{ path('admin_orders_update',{'id': order.id}) }}" method="post">
+
+                               <tr>
+                                   <th>Shipinfo</th>
+                                   <td><textarea name="shipinfo" cols="60" rows="3">{{ order.shipinfo }}</textarea></td>
+                               </tr>
+                               <tr>
+                                   <th>Admin Not</th>
+                                   <td><textarea name="note" cols="60" rows="3">{{ order.note }}</textarea></td>
+                               </tr>
+                               <tr>
+                                   <th>Status</th>
+                                   <td><select name="status">
+                                           <option>{{ order.status }}</option>
+                                           <option>accepted</option>
+                                           <option>inshiping</option>
+                                           <option>canceled</option>
+                                           <option>accepted</option>
+                                           <option>completed</option>
+                                       </select>
+                                   <input type="submit" value="Guncelle">
+                                   </td>
+                               </tr>
+                           </form>
+                            </tbody>
+                        </table>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Ürün İsmi</th>
+                                <th>Satış Fiyatı</th>
+                                <th>Alınan Miktar</th>
+                                <th>Toplam</th>
+                                <th>Durum</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% set total = 0 %}
+                            {% for rs in orderdetail %}
+                                <tr>
+                                    <td>{{ rs.id }}</td>
+                                    <td>{{ rs.name }}</td>
+                                    <td>{{ rs.price }}</td>
+                                    <td>{{ rs.quantity }}</td>
+                                    <td>{{ rs.amount }}</td>
+                                    <td>{{ rs.status }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5">Order Detail</td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="5">Toplam Alışveriş Tutarı : <b>{{ order.amount }} TL</b></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+            </div>
+            </div>
+            </div>
+            <!--User List Table-->
+        </section>
+
+        <!--/.content-->
+    <!--/.content-wrapper-->
+
+
+
+
+
+    </div>
+    </div>
+</body>
+
+

@@ -1,0 +1,70 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Kategori Listesi{% endblock %}
+
+{% block content %}
+    <!--Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!--Content Header (Page Header) -->
+        <section class="content-header">
+            <h1>
+                Sipariş Listesi
+            </h1>
+
+        </section>
+        <!--Main Content-->
+        <section class="content">
+            <!--User List Table-->
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Userid</th>
+                                <th>Amount</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>Phone</th>
+                                <th>Note</th>
+                                <th>Status</th>
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in orders %}
+                                <tr>
+
+                                    <td>{{ order.id }}</td>
+                                    <td>{{ order.userid }}</td>
+                                    <td>{{ order.amount }}</td>
+                                    <td>{{ order.name }}</td>
+                                    <td>{{ order.adress }}</td>
+                                    <td>{{ order.city }}</td>
+                                    <td>{{ order.phone }}</td>
+                                    <td>{{ order.note }}</td>
+                                    <td>{{ order.status }}</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" href="javascript:openWin('{{ path('admin_orders_show', {'id': order.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=100,left=200,scrollBars=no,resizable=no,width=800,height=2000');">
+                                            Göster</a>
+
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="11">Kayıt bulunamadı</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--User List Table-->
+        </section>
+        <!--/.content-->
+    </div>
+    <!--/.content-wrapper-->
+{% endblock %}
