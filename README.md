@@ -1,4 +1,4 @@
-#Symfony 4 E Commerce Website and Admin Panel
+# Symfony 4 E Commerce Website and Admin Panel
 
 A symfony 4 e commerce website built for my 	BLM441 - Computer Engineering Private Subjects course
 
